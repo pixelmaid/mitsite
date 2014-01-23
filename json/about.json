@@ -1,0 +1,81 @@
+{ 
+	"about": {"content" : 
+			"I'm a doctoral candidate and research assistant in the Lifelong Kindergarten research group at the MIT Media Lab. I completed my M.S. in the High-Low Tech research group at the Media Lab. I also hold an M.F.A in Integrated Media Arts from Hunter College, and a B.F.A. in Digital Art from the University of Oregon. I'm interested in the relationship between computation and creative expression and I'm excited about helping people use programing to build things they care about. My research examines combining computational design and digital fabrication to support and extend hand-craft practices.", "images":["placeholder.jpg","pillow.jpg"]},
+	"cv" : {"link" : "../resources/cv_jacobsj.pdf"},
+	"portfolio" : {"content" : "This is my portfolio.", 
+	
+	"projects": [
+	{ "name":"DressCode", "id":"dresscode", "short":"A computational design software for craft applications. DressCode features linked editable representations between graphic drawing and textual programming", "c_id":"dresscode_page", "blurb":"<p>DressCode is novice-oriented software tool that features linked editable representations that enable people to create designs through graphic manipulation and textual programming.</p> <p>As designers create and manipulate shapes graphically, the software generates  editable programming expressions that correspond to their actions. Designers also can generate graphic forms by writing programming expressions and manipulate these forms with graphic editing tools. DressCode also supports vector graphic design methods which enable the creation of designs that are compatible with digital fabrication and physical making.</p> <p>We evaluated DressCode in a series of workshops where people used it to make personal craft artifacts, including laser-cut jewelry and screen printed t-shirts.</p>", "date":2014, "featured":1, "inprog":1, "thumb": "images/thumbs/dress_code.jpg", "images":["dc_interface.jpg","bracelets.jpg","shirts.jpg"], "videos":["77434985"]},
+	
+	{ "name":"Codeable Objects", "id":"bar", "c_id":"bar_page", "short":"A design tool for the creation of custom laser-cut lamps. Codeable Objects combines computer programming with intuitive graphic sliders for accessible, aesthetic design for digital fabrication.", "blurb":"also an amazing project", "date":2012, "featured":1, "inprog":0, "thumb": "images/thumbs/codeable_objects.jpg", "images":["codeable_objects_interface.jpg"],"videos":[]},
+	
+{ "name":"aireForm", "id":"aireform", "c_id":"aireform_page", "short":"aireForm is a shape-changing garment powered by air which dynamically transforms its silhouette to tell a story on the catwalk.", "blurb":"also an amazing project", "date":2013, "featured":1, "inprog":0, "thumb": "images/thumbs/aireform.jpg", "images":["placeholder.jpg","image1.jpg","image2.jpg"],"videos":[]},
+
+{ "name":"Computational Fashion Design", "id":"compfashiondes", "c_id":"compfashiondes_page", "short":"Research in engaging young people in computational fashion design through a custom programing library, digital fabrication and sewing.", "blurb":"also an amazing project", "date":2012, "featured":1, "inprog":0, "thumb": "images/thumbs/computational_fashion_design.jpg", "images":["placeholder.jpg","image1.jpg","image2.jpg"],"videos":[]}
+	
+	]},
+	
+	
+	
+	"pub" : {"papers":[ 
+	"Jacobs J., Buechley, L.,  <em>Codeable Objects: Computational Design and Digital Fabrication for Novice Programmers</em>. Proceedings of the ACM SIGCHI Conference on Human Factors in Computing Systems, Paris, France, April 2013.",
+
+"Masters Thesis: <em>Algorithmic Craft: the Synthesis of Computational Design, Digital Fabrication, and Hand Craft</em>. Media Arts and Sciences, Massachusetts Institute of Technology, Cambridge, MA, August 2013."	
+	
+	], 
+	
+	"workshops":[
+	"Jacobs J., Buechley, L., <em>Combining Craft, Computation, and Digital Fabrication</em>. In FabLearn: Digital Fabrication and Education Conference, Stanford University, California, October 2012. (workshop)", 
+	
+	"Jacobs J., Buechley L., <em>Codeable Objects Software</em>. In The 3rd annual Open Hardware Summit,  Open Source Hardware Association, New York, New York, September 2012 (demo)"
+	
+	],
+	
+	"invited talks":[
+	"<em>Programming and Digital Fabrication for Wearables</em>, MIT Women Technology Program, Massachusetts Institute of Technology, July 2012 (guest speaker)",
+	"<em>Emergent Creativity in Computer Science: Iterative Design through Code</em>, Science and Engineering Program for Teachers, Massachusetts Institute of Technology, June 2012 (lecture)",
+	
+	"Jacobs J., Synn L., <em>Building a Narrative Atlas: Mapping Forms of Communication</em>, In Communicating Forms: Aesthetics, Relationality, Collaboration, University of Chicago, Illinois, 2010"
+	]},
+	
+	"exhib":{
+	"solo":[ "<em>Glasshouse</em>, Tractor Gallery, Portland Oregon, 2010",
+	
+			"<em>Surface Value</em>, Tractor Gallery, Portland Oregon, 2009",
+			"<em>Contract</em>, LumpWest Project Space, Eugene Oregon, 2007"
+	], 
+	
+	"group":[
+		"<em>User Required</em>, Burlington City Arts, Vermont, 2013",
+		"<em>Paper to Pixel</em>, Vernon Community Art Center Public Gallery, Connecticut, 2013",
+		"<em>Oregon Design Conference Exhibition</em>, American Institute of Architects, Portland, Oregon, 2011",
+		"<em>Pixilerations</em>, First Works Festival, Rhode Island School of Design, Providence, Rhode Island, 2010",
+		"<em>Formless in Context: A Study of Chaos and Discourse</em>, Beta Spaces, New York, 2009",
+		"<em>Blur + Sharpen Animation Festival</em>, University of Southern California School of Cinematic Arts, Los Angeles, California, 2009",
+	"<em>Perpetual Art Machine, Traveling Project/Show</em>, Art Basel Miami, Florida, 2008",
+	"<em>Teleculture</em>, Pace Digital Gallery, New York, New York, 2007",
+	"<em>Selected Works from DARTS at the University of Oregon</em>, Lamar Dodd Gallery, Lamar Dodd School of Art, The University of Georgia, 2007",
+ 	"<em>Automaphile</em>, Laverne Krause Gallery, Eugene, Oregon, 2006"]
+
+	},
+	
+	"links":[
+	{"name":"Lifelong Kindergarten", "link":"http://media.mit.edu/llk", "blurb":"Led by Mitchel Resnick, Lifelong Kindergarten develops technologies that expanding the range of what people can design, create, and learn."},
+	{"name":"High-Low Tech", "link":"http://highlowtech.org","blurb":"High Low Tech was a research group I was a part of from 2011-2013, led by Leah Buechley. The work of our group is documented here, along with tutorials and resources for activities in combining art, craft, electronics and computation."},
+	{"name":"FUSE", "link":"http://www.fusestudio.net/","blurb":"FUSE is an interest-driven learning experience being developed by researchers at Northwestern University with the goal of engaging youth in STEAM activities. I have worked with FUSE to develop a series of activities for young people in computational fashion design."}],
+	"projects":[	
+	{"name":"hero-worship.com", "link":"http://hero-worship.com","blurb":"Before coming to the Media Lab, I worked on a variety of art projects ranging from street art to interactive installation to animation. My old website at hero-worship.com contains documentation of my artwork and my artist statement, all of which is a primary influence on the research I am doing now."},
+	
+	{"name":"github.com/pixelmaid", "link":"http://github.com/pixelmaid","blurb":"The majority of software I write is open source. If you're looking for my code, you can find it here."},
+	
+	{"name":"htm coursework", "link":"http://fab.cba.mit.edu/classes/863.11/people/jennifer.jacobs/index.html","blurb":"I was lucky enough to be able to take Neil Gershenfeld's How To Make Almost Anything course, which provided a technical foundation for the fabrication work I am doing now. This is my website documenting my work for the course."},
+	
+	{"name":"vimeo.com/jenniferjacobs", "link":"https://vimeo.com/jenniferjacobs","blurb":"Additional video documentation of projects I'm currently working on or things I'm testing out can be found on my Vimeo page, along with some animation work I do on the side."}
+	]
+}
+
+
+
+
+
+
