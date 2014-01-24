@@ -88,40 +88,40 @@ $(document).ready(function(){
 			$("#links_internal_content").html(generateLinks(data['links']));
 			$("#projects_internal_content").html(generateLinks(data['projects']));
 
-			 for(i=0;i<data['portfolio']['projects'].length;i++){
+			/* for(i=0;i<data['portfolio']['projects'].length;i++){
     			blurbName = "#"+data['portfolio']['projects'][i]['id']+"_blurb";
     			$(blurbName).slimScroll({
       			position: 'left',railVisible: true,
     			alwaysVisible: true, height:210 });
     
-    		}
+    		}*/
 
 		}
 	);
 
 	hide();
 	
-   $('#work_internal_content').slimScroll({
+ /* $('#work_internal_content').slimScroll({
       position: 'left',railVisible: true,
     alwaysVisible: true, height:600 });
       
-   $('#pub_internal_content').slimScroll({
+ //  $('#pub_internal_content').slimScroll({
       position: 'left',railVisible: true,
     alwaysVisible: true  });
     
-    $('#exhib_internal_content').slimScroll({
+  //  $('#exhib_internal_content').slimScroll({
       position: 'left',railVisible: true,
     alwaysVisible: true  });
     
-     $('#links_internal_content').slimScroll({
+   //  $('#links_internal_content').slimScroll({
       position: 'left',railVisible: true,
     alwaysVisible: true  });
     
     
-     $('#projects_internal_content').slimScroll({
+  $('#projects_internal_content').slimScroll({
       position: 'left',railVisible: true,
     alwaysVisible: true  });
-    
+ */   
     
     
    
@@ -246,7 +246,9 @@ for (var i = 0; i< data.length; i++){
 	var singlecontent="";
 	singlecontent+='<div class="singlecontent" id="'
 	singlecontent+=data[i]['c_id']+'"';
-	singlecontent+='><div class="left"><div class="slideshow" id="'
+	singlecontent+='><div class="left">'
+	singlecontent+='<div class="title" id ="'+data[i]['id']+'_title"><h1>'+data[i]['name']+'</h1></div>';
+	singlecontent+='<div class="slideshow" id="'
 	singlecontent+=data[i]['id']
 	singlecontent+='_page_slideshow">'
 	if(data[i]['videos'].length!=0){
@@ -260,12 +262,12 @@ for (var i = 0; i< data.length; i++){
 	}
 	singlecontent+='</div>'
 	singlecontent+='<a id="'+data[i]['id']+'_left"> < </a> <a id="'+data[i]['id']+'_right"> ></a>'
+	singlecontent+='<div class="back_div"><a id="back">Back</a></div>'
 	singlecontent+='</div>'
 	singlecontent+='<div id="about-content", class="right">'
-	singlecontent+='<div class="title" id ="'+data[i]['id']+'_title">'+data[i]['name']+'</div>';
 	singlecontent+='<div class="blurb" id ="'+data[i]['id']+'_blurb">';
 	singlecontent+=data[i]['blurb'];
-	singlecontent+='</div><div class="back_div"><a id="back">Back</a></div>'
+	singlecontent+='</div>'
    	singlecontent+='</div><div class="clear-both"></div></div>'
 	htmlcontent+='<div class="menu_item" id="';
 	htmlcontent+=data[i]['id']+'"';
@@ -300,10 +302,10 @@ console.log(active_show);
 //alert(target);
 toggleOut("#work_menu");
 workOut=true;
-$(target)
-  .css('opacity', 0)
-  .slideDown('fast')
-  .animate(
+$(target).show()
+.css('z-index', 1)
+.css('opacity', 0)
+.animate(
     { opacity: 1 },
     { queue: false, duration: 'slow' }
   );
@@ -352,23 +354,42 @@ if($self!=toOpen){
  }
 
 function toggleIn(target){
-
-$(target)
+$(target).show()
+.css('z-index', 1)
+.css('opacity', 0)
+.animate(
+    { opacity: 1 },
+    { queue: false, duration: 'slow' }
+  );
+/*$(target)
   .css('opacity', 0)
-  .slideDown('fast')
+  
+  //.slideDown('fast')
   .animate(
     { opacity: 1 },
     { queue: false, duration: 'slow' }
-  );}
+  );*/
+  
+  }
   
 function toggleOut(target){
 $(target)
+.css('z-index', -100)
+.animate(
+    { opacity: 0 },
+    {queue: false, duration: 'slow'}, function() {$(target).hide()}
+  );
+
+/*$(target)
   .css('opacity', 1)
-  .slideUp('fast')
+
+  //.slideUp('fast')
   .animate(
     { opacity: 0 },
     { queue: false, duration: 'slow' }
-  );}
+  );*/
+  
+  }
 
 function hide(){
  $( "#work_content" ).hide();

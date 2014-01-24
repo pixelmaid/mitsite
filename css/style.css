@@ -36,46 +36,57 @@
  width:800px;
  margin-bottom: 15px;
  margin-top:10px;
+ position:absolute;
  } 
   
+ #menu li{
+ 
+	display: inline;
+	margin-right:20px;
+}
+#menu{
+margin-bottom: 25px;
+
+}
 
  
  #work_content{
- height: 400 px;
+ /*height: 400 px;*/
  }
  
  #pub_internal_content, #exhib_internal_content, #links_internal_content, #projects_internal_content, #work_internal_content{
- 	width:600px;
- 	height: 400px;
- 	overflow: hidden;
+ 	width:700px;
+ 	/*height: 400px;
+ 	overflow: hidden;*/
  	padding-left: 20px;
  
  }
  
- .blurb{
- padding-left: 20px;
- 
- 
- }
- .title{
+  .title{
  margin-bottom: 15px;
+ width:250px;
+ float:left;
  }
  .back_div{
- margin-top: 20px;
+ margin-bottom: 15px;
+ width:40px;
+ float:right;
  }
  
  /*#work_menu_items{
   position:relative; margin:0px auto; padding:0px; width: 600px; height: 375px; overflow: hidden; 
  }*/
  
-.singlecontent{
+.singlecontent, #work_menu{
+	position: absolute;
   	/*margin-bottom: 20px;*/
 	
  	
  }
  
  .blurb{
- 	height:260px;
+ 	/*height:260px;*/
+ 	margin-top:30px;
  	margin-bottom: 10px;
  	overflow: hidden;
  
