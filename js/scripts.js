@@ -9,16 +9,20 @@ dynamicPortfolio[0]=new Array();
 dynamicPortfolio[1]= new Array();
 dynamicPortfolio[2]= new Array();
 
-
 $(document.body).on('click', 'a', function() {
 		//Get the button
+		//
 		var $button = this;
 		console.log($button.id);
 		//Handle the dynamic portfolio control buttons
 		for(var i=0;i<dynamicPortfolio[0].length;i++){
 			if($button.id == dynamicPortfolio[0][i]){
-				console.log(dynamicPortfolio[1][i])
+				//console.log(dynamicPortfolio[1][i])
+				window.scrollTo(0,0);
 				toggleInPortfolio(dynamicPortfolio[1][i])
+				window.location.hash = "_"+dynamicPortfolio[0][i].substring(0,dynamicPortfolio[0][i].length-5);
+
+				
 			}
 			else if(dynamicPortfolio[2][i]+"_left"==$button.id){
 				slideSwitchBack();
@@ -28,30 +32,26 @@ $(document.body).on('click', 'a', function() {
 			}
 		}
 		
+		
+		
 		//Handle the menu control buttons
 		if( $button.id == "back" ){
 			toggleOutPortfolio();
 
 			return;
 		}
-		if( $button.id == "about" ){
-			toggleSlide("#content");
+		if( $button.id == "research" ){
 			resetSlideInterval("about",true);
-
+			button_active($button,"#content","work")
 			return;
 		}
-		if( $button.id == "work" ){
-			toggleSlide("#work_content");
-			return;
-		}
+		
 		if( $button.id == "pub" ){
-			toggleSlide("#pub_content");
-
+			button_active($button,"#pub_content","publications")
 			return;
 		}
 		if( $button.id == "exhib" ){
-			toggleSlide("#exhib_content");
-
+			button_active($button,"#exhib_content","exhibitions")
 			return;
 		}
 		if( $button.id == "cv" ){
@@ -60,13 +60,11 @@ $(document.body).on('click', 'a', function() {
 			return;
 		}
 		if( $button.id == "links" ){
-			toggleSlide("#links_content");
-
+			button_active($button,"#links_content","collar")
 			return;
 		}
 		if( $button.id == "projects" ){
-			toggleSlide("#projects_content");
-
+			button_active($button,"#projects_content","other")
 			return;
 		}
 		
@@ -75,10 +73,19 @@ $(document.body).on('click', 'a', function() {
 
 
 
+
 $(document).ready(function(){
+var currentPage = window.location.hash;
+//console.log(currentPage);
 	$.getJSON( "json/about.json", 
 		function( data ) {
-			console.log( data['links'][1]['name'] )
+			//console.log( data['links'][1]['name'] )
+			var portfoliodata = data['portfolio']['projects'];
+			for(i=0;i<portfoliodata.length;i++){
+				dynamicPortfolio[0].push(portfoliodata[i]['id']+"_link");
+				dynamicPortfolio[1].push(portfoliodata[i]['c_id']);
+				dynamicPortfolio[2].push(portfoliodata[i]['id']);
+			}
 			cv_link=data['cv']['link'];
 			$("#about-content").html( '<p>'+data['about']['content'] );
 			$("#about_slideshow").html( generateSlideshow(data['about']['images'],true));
@@ -96,10 +103,16 @@ $(document).ready(function(){
     
     		}*/
 
+	
+
+	gotoHash(currentPage)
+	
+	$(".fancybox").fancybox();
 		}
 	);
+	
+	// Bind the event.
 
-	hide();
 	
  /* $('#work_internal_content').slimScroll({
       position: 'left',railVisible: true,
@@ -133,6 +146,60 @@ $(document).ready(function(){
 	
 });
 
+
+function button_active(button,divName,hashName){
+	console.log("button_change");
+
+	toggleSlide(divName);
+	$(button).addClass('active');
+	window.location.hash = hashName;
+	
+
+}
+
+
+function gotoHash(currentPage){
+
+	hide();
+	if(currentPage == "#research"){
+		toggleSlide("#content",0);
+		$('#research').addClass('active');
+
+		}
+	else if (currentPage == "#publications"){
+		toggleSlide("#pub_content",0);
+		$('#pub').addClass('active');
+		
+		}
+		
+	else if (currentPage == "#exhibitions"){
+		toggleSlide("#exhib_content",0);
+		$('#exhib').addClass('active');
+		
+		}
+		
+	else if (currentPage == "#collab"){
+		toggleSlide("#links_content",0);
+		$('#links').addClass('active');
+		
+		}
+		
+	else if (currentPage == "#other"){
+		toggleSlide("#projects_content",0);
+		$('#projects').addClass('active');
+		
+		}
+	else{
+		for(var i=0;i<dynamicPortfolio[0].length;i++){
+		//console.log(currentPage.substring(2,currentPage.length)+"_link");
+			if(currentPage.substring(2,currentPage.length)+"_link" == dynamicPortfolio[0][i]){
+				toggleInPortfolio(dynamicPortfolio[1][i],0)
+				$('#research').addClass('active');
+			}
+		}
+	
+	}
+}
 function generateVideo(data,first,id){
 var videocontent =""
 for (var i = 0; i< data.length; i++){
@@ -240,18 +307,31 @@ return htmlcontent;
 
 
 function generatePortfolioMenu(data){
-var htmlcontent= "";
+var htmlcontent= '<h1 class="heading">Selected Research Projects</h1>';
 
 for (var i = 0; i< data.length; i++){
 	var singlecontent="";
 	singlecontent+='<div class="singlecontent" id="'
 	singlecontent+=data[i]['c_id']+'"';
-	singlecontent+='><div class="left">'
-	singlecontent+='<div class="title" id ="'+data[i]['id']+'_title"><h1>'+data[i]['name']+'</h1></div>';
-	singlecontent+='<div class="slideshow" id="'
+	singlecontent+='>'
+	singlecontent+='<div class="title" id ="'+data[i]['id']+'_title"><h2 class ="heading">'+data[i]['name']+'</h2></div>';
+	singlecontent+='<div class ="sc_container">'
+	singlecontent+='<div class="left">'
+	singlecontent+='<div class="image_list" id="'
 	singlecontent+=data[i]['id']
 	singlecontent+='_page_slideshow">'
-	if(data[i]['videos'].length!=0){
+	for(var j=0;j<data[i]['videos'].length;j++){
+		singlecontent+='<iframe id="'
+		singlecontent+=data[i]['id']+'_'+j+'" '
+		singlecontent+='src="//player.vimeo.com/video/'
+		singlecontent+=data[i]['videos'][j]
+		singlecontent+='?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="300" height="200" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
+	}
+	for(var j=0;j<data[i]['images'].length;j++){
+	singlecontent+='<a class="fancybox" rel="'+data[i]['id']+'" href="images/'+data[i]['images'][j]+'">'+'<img width = 300 height = 200 src="images/';
+	singlecontent+=data[i]['images'][j]+'"/></a>'
+	}
+	/*if(data[i]['videos'].length!=0){
 		singlecontent+=generateVideo(data[i]['videos'],true,data[i]['id']);
 		singlecontent+=generateSlideshow(data[i]['images'],false);
 
@@ -259,31 +339,47 @@ for (var i = 0; i< data.length; i++){
 	else{
 		singlecontent+=generateSlideshow(data[i]['images'],true);
 
-	}
+	}*/
 	singlecontent+='</div>'
-	singlecontent+='<a id="'+data[i]['id']+'_left"> < </a> <a id="'+data[i]['id']+'_right"> ></a>'
-	singlecontent+='<div class="back_div"><a id="back">Back</a></div>'
+	//singlecontent+='<a id="'+data[i]['id']+'_left"> < </a> <a id="'+data[i]['id']+'_right"> ></a>'
+
 	singlecontent+='</div>'
 	singlecontent+='<div id="about-content", class="right">'
 	singlecontent+='<div class="blurb" id ="'+data[i]['id']+'_blurb">';
 	singlecontent+=data[i]['blurb'];
-	singlecontent+='</div>'
+	singlecontent+='</div><div id="metacontent">'
+	if(data[i]['papers'].length>0){
+		singlecontent+='<h1>Papers</h1>'
+		for(var j=0;j<data[i]['papers'].length;j++){
+			singlecontent+="<p>"+data[i]['papers'][j]['name'] +' <a href="'+data[i]['papers'][j]['link']+'">'+'(pdf)'+'</a>';
+		}
+	}
+	if(data[i]['links'].length>0){
+		singlecontent+='<h1>Links</h1>'
+		for(var j=0;j<data[i]['links'].length;j++){
+			singlecontent+='<p><a href="'+data[i]['links'][j]['link']+'">'+data[i]['links'][j]['name']+'</a></p>';
+		}
+	}
+	singlecontent+="</div>"
+	singlecontent+='<div class="back_div"><a id="back">Back</a></div>'
    	singlecontent+='</div><div class="clear-both"></div></div>'
 	htmlcontent+='<div class="menu_item" id="';
 	htmlcontent+=data[i]['id']+'"';
-	htmlcontent+='><div class="menu_item_left"><img width=150, height = 100, src="'
+	htmlcontent+='><div class="menu_item_left">'
+	htmlcontent+='<a id="';
+	htmlcontent+=data[i]['id']+'_link';
+	htmlcontent+='">';
+	htmlcontent+='<img width=150, height = 100, src="'
 	htmlcontent+=data[i]['thumb'];
-	htmlcontent+='"></div><div class="right"><a id="';
+	htmlcontent+='"></a></div><div id = "portfolio_blurb", class="right"><a id="';
 	htmlcontent+=data[i]['id']+'_link';
 	htmlcontent+='">';
 	htmlcontent+=data[i]['name']+'</a>';
 	htmlcontent+='<p>'+data[i]['short'];
-	htmlcontent+='</div></div>';
+	htmlcontent+='</div></div></div>';
 	htmlcontent+='<div class="clear-both"></div>';
-	$("#work_content").append(singlecontent);
-	dynamicPortfolio[0].push(data[i]['id']+"_link");
-	dynamicPortfolio[1].push(data[i]['c_id']);
-	dynamicPortfolio[2].push(data[i]['id']);
+	$("#content").append(singlecontent);
+	
 	$( "#"+data[i]['c_id'] ).hide();
 	//$( "#"+ data[i]['id']+"_link").click(function(){toggleInPortfolio(data[i]['c_id'])});
 
@@ -294,20 +390,22 @@ return htmlcontent;
 }
 
 
-function toggleInPortfolio(name){
+function toggleInPortfolio(name,time){
+ time = typeof time !== 'undefined' ? time : 700;
+
 var target = '#'+name;
 
 resetSlideInterval(name,false);
-console.log(active_show);
+//console.log(active_show);
 //alert(target);
-toggleOut("#work_menu");
+toggleOut("#work_menu",time);
 workOut=true;
 $(target).show()
 .css('z-index', 1)
 .css('opacity', 0)
 .animate(
     { opacity: 1 },
-    { queue: false, duration: 'slow' }
+    { queue: false, duration: time }
   );
 
 }
@@ -334,32 +432,42 @@ if(reset_auto){
 }
 
 
-function toggleSlide(toOpen) {
+function toggleSlide(toOpen, time) {
 //console.log("toOpen="+toOpen)
+ time = typeof time !== 'undefined' ? time : 700;
+
 if($self!=toOpen){
 	pausePlayer();
-	toggleOutPortfolio();
- 	toggleOut("#content");
-	toggleOut("#work_content");
-	toggleOut("#pub_content");
-	toggleOut("#exhib_content");
-	toggleOut("#links_content");
-	toggleOut("#projects_content");
- 	toggleIn(toOpen);
+	toggleOutPortfolio(time);
+	$("#research").removeClass('active');
+	$("#pub").removeClass('active');
+	$("#exhib").removeClass('active');
+	$("#cv").removeClass('active');
+	$("#projects").removeClass('active');
+	$("#links").removeClass('active');
+
+ 	toggleOut("#content",time);
+	toggleOut("#pub_content",time);
+	toggleOut("#exhib_content",time);
+	toggleOut("#links_content",time);
+	toggleOut("#projects_content",time);
+	
+ 	toggleIn(toOpen,time);
  	$self=toOpen
  }
- else if($self=="#work_content"){
+ else if($self=="#content"){
  	toggleOutPortfolio();
  }
  }
 
-function toggleIn(target){
+function toggleIn(target,time){
+ time = typeof time !== 'undefined' ? time : 700;
 $(target).show()
 .css('z-index', 1)
 .css('opacity', 0)
 .animate(
     { opacity: 1 },
-    { queue: false, duration: 'slow' }
+    { queue: false, duration: time }
   );
 /*$(target)
   .css('opacity', 0)
@@ -372,12 +480,14 @@ $(target).show()
   
   }
   
-function toggleOut(target){
+function toggleOut(target,time){
+time = typeof time !== 'undefined' ? time : 700;
+
 $(target)
 .css('z-index', -100)
 .animate(
     { opacity: 0 },
-    {queue: false, duration: 'slow'}, function() {$(target).hide()}
+    {queue: false, duration: time}, function() {$(target).hide()}
   );
 
 /*$(target)
@@ -392,7 +502,6 @@ $(target)
   }
 
 function hide(){
- $( "#work_content" ).hide();
  $( "#pub_content" ).hide();
  $("#exhib_content").hide();
  $("#cv_content").hide();
